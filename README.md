@@ -27,7 +27,6 @@
     ![CarNN.gif](images/CarNN.gif)
 
     <br><br>
-    <br><br>
   
   * Traffic signs
     * Data generation 
@@ -43,7 +42,7 @@
 
     ![image1174.jpg](images/image1174.jpg)
 
-    <br><br>
+    <br>
     The second part is a collection of traffic sign "prefabs", which are blueprints of 3D objects that unity can manipulate and apply methods to. This includes scaling, rotating, and translating the objects, as well as applying textures to them.
     <br>
     These 3D objects are a combination of simple shapes, and textures that are applied to them. The textures in our case were the following collection of images:
@@ -51,7 +50,7 @@
 
     ![traffic_sign_collection.png](images/traffic_sign_collection.png)
  
-    <br><br>
+    <br>
     We used Unity to combine these parts in random ways, and thereby managed to develop a solution which could generate any given amount of synthetic images, which gives us an unlimited amount of training data for our traffic sign recognition model.
     <br>
     An example of such a generated image could be the following:
@@ -78,7 +77,7 @@
 
     ![trafik9.jpg](images/trafik9.jpg)
 
-    <br><br>
+    <br>
     Our end goal is to combine this model with the car simulator, so that the car can detect traffic signs in real-time, and react to them accordingly.
     <br><br>
 
