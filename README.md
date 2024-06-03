@@ -1,7 +1,7 @@
 # Overview:
 
 * Supervised learning:
-  * Neural Network versus ML algorithm
+  * Accident prediction with: Neural Network versus ML algorithm
 * LLM
   * Chatbot
 * Unity
