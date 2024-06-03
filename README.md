@@ -11,7 +11,7 @@
   <br><br>
   Below, the car can be seen with its 2x15 ray-sensors activated and visualized:
   <br><br>
-  ![car_rayperception.png](images%2Fcar_rayperception.png)
+  ![car_rayperception.png](images/car_rayperception.png)
   <br><br>
   Each sensor generates a value of 1 if it detects an object, or 0 if it doesn't, as well as the distance to where the ray hit the object. The model then has to learn to interpret these values and use them to steer the car in the right direction.
   <br>
@@ -23,7 +23,7 @@
   <br>
   Below is an example of the progress achieved by a training process which used 158 instances of the environment to collectively train the model for 5,000,000 steps. The clip shows a 13 minute training session boiled down to 30 seconds:
   <br><br>
-  ![CarNN.gif](images%2FCarNN.gif)
+  ![CarNN.gif](images/CarNN.gif)
   <br><br>
   <br><br>
   * Traffic signs
@@ -37,19 +37,19 @@
     <br>
     An example of such an image could be like the following, which was simply found on google:
     <br><br>
-    ![image1174.jpg](images%2Fimage1174.jpg)
+    ![image1174.jpg](images/image1174.jpg)
     <br><br>
     The second part is a collection of traffic sign "prefabs", which are blueprints of 3D objects that unity can manipulate and apply methods to. This includes scaling, rotating, and translating the objects, as well as applying textures to them.
     <br>
     These 3D objects are a combination of simple shapes, and textures that are applied to them. The textures in our case were the following collection of images:
     <br><br>
-    ![traffic_sign_collection.png](images%2Ftraffic_sign_collection.png)
+    ![traffic_sign_collection.png](images/traffic_sign_collection.png)
     <br><br>
     We used Unity to combine these parts in random ways, and thereby managed to develop a solution which could generate any given amount of synthetic images, which gives us an unlimited amount of training data for our traffic sign recognition model.
     <br>
     An example of such a generated image could be the following:
     <br><br>
-    ![step0.camera.png](images%2Fstep0.camera.png)
+    ![step0.camera.png](images/step0.camera.png)
     <br><br> 
     
     * Prediction
@@ -58,13 +58,13 @@
     <br>
     During the training process, the YOLO training script outputs a collection of validation images with the predicted bounding boxes drawn on them, which is used to get a general idea of the models accuracy. An example of such an image could be the following:
     <br><br>
-    ![val_batch2_pred.jpg](images%2Fval_batch2_pred.jpg)
+    ![val_batch2_pred.jpg](images/val_batch2_pred.jpg)
     <br><br>
     In that validation-batch, the model seems to achieve a high accuracy, as it predicts most of the taffic signs correctly with a high certainty.
     <br><br>
     We also tested the model on real images, and it seems to perform well on those as well. An example of the output of such a prediction could be the following:
     <br><br>
-    ![trafik9.jpg](images%2Ftrafik9.jpg)
+    ![trafik9.jpg](images/trafik9.jpg)
     <br><br>
     Our end goal is to combine this model with the car simulator, so that the car can detect traffic signs in real-time, and react to them accordingly.
     <br><br>
