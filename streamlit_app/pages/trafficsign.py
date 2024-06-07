@@ -79,16 +79,16 @@ st.text("")
 st.title("Info about the model:")
 st.write("The model used for this task is the YOLOv8n model trained on 30,000 synthetic images of traffic-environments"
          " with appearing traffic signs. The images were created and generated using the Unity Game Engine and its Perception Engine package."
-         " The model was trained for 30 epochs with a batch size of 64, and was trained on the NVIDIA 1070 Ti GPU."
-         " A thing to note about the model's performance metrics, is that they are measured based on the synthetic images, and not real-world images."
+         " The model was trained for 30 epochs with a batch size of 64, and was trained on the NVIDIA 1070 Ti GPU.")
+st.write(" A thing to note about the model's performance metrics, is that they are measured based on the synthetic images, and not real-world images."
          " This means that the model might not perform as well on real-world images as it does on the synthetic images.")
 
 st.write("")
 st.write("")
-st.write("Below are the training metrics of the model, showing the loss and mAP (mean Average Precision) over the 30 epochs.")
+st.write("Below are the training metrics of the model, showing the loss and mAP (mean Average Precision) over the 30 epochs:")
 st.image("../img/results.png", caption="Model Training Metrics", use_column_width=True)
 
 st.write("")
 st.write("")
 st.write("And this is the produced confusion matrix, showing that the model has a high accuracy on the test set, with few misclassifications:")
-st.image("../img/confusion_matrix_normalized.png", caption="Model Training Metrics", use_column_width=True)
+st.image("../img/confusion_matrix_normalized.png", caption="Model Confusion Matrix (Normalized)", use_column_width=True)
