@@ -1,3 +1,16 @@
+# TODO:
+- **Data Literacy**: 
+  - Data Cleaning
+  - Data Preprocessing
+  - Data Transformation
+  - Data Visualization
+- **Prediction** 
+  - **Feature exploration and selection**: 
+    - Which feature is important for the prediction
+    - The correlation between the features
+- **LLM**
+  - choice of models
+
 # Overview:
 
 * Supervised learning:
