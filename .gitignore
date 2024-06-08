@@ -1,6 +1,8 @@
 /data/
 /__pycache__
 /llm/__pycache__
+/prediction/supervised/__pycache__
 .env
+.venv2/
 .idea/
 /neo4j/__pycache__

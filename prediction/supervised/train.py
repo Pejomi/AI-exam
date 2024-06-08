@@ -5,7 +5,7 @@ from sklearn.metrics import accuracy_score
 
 
 def train_decision_tree():
-    data = pd.read_csv('data/encoded_data.csv')
+    data = pd.read_csv('../../data/encoded_data.csv')
 
     X = data.drop('Accident_Severity', axis=1)
     y = data['Accident_Severity']

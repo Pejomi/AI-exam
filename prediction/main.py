@@ -3,10 +3,15 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 import tensorflow as tf
-import keras
-from keras.models import Sequential
-from keras.layers import Input, Conv2D, MaxPool2D, Flatten, Dense, Dropout
-from keras.optimizers import Adam
+
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Input, Conv2D, MaxPool2D, Flatten, Dense, Dropout
+from tensorflow.keras.optimizers import Adam
+
+# import keras
+# from keras.models import Sequential
+# from keras.layers import Input, Conv2D, MaxPool2D, Flatten, Dense, Dropout
+# from keras.optimizers import Adam
 
 
 # Load data
