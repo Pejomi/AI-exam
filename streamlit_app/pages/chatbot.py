@@ -13,6 +13,7 @@ from llm.llm import LLM
 st.set_page_config(page_title="Chatbot", page_icon="../images/logo.png")
 a = LLM()
 
+
 # Streamed response emulator
 def response_generator(question):
     response = a.generate_answer(question)
@@ -27,6 +28,7 @@ def save_data_to_csv(df):
 def clear_chat():
     st.session_state.messages = []
     st.rerun()
+
 
 st.markdown(
     """
