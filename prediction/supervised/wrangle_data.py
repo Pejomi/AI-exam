@@ -20,8 +20,6 @@ pd.set_option('display.max_rows', None)
 def wrangle_data(data):
     print("Loading and wrangling data...")
 
-
-
     data_cut = pd.DataFrame(data[
         ['Accident_Severity', 'Time', 'Light_Conditions', 'Weather_Conditions', 'Speed_limit', 'Road_Type',
          'Road_Surface_Conditions', 'Urban_or_Rural_Area', 'Age_Band_of_Driver', 'Sex_of_Driver', 'Age_of_Vehicle',
@@ -42,26 +40,33 @@ def wrangle_data(data):
     data_cut['Time'] = pd.to_timedelta(data_cut['Time'] + ':00')
     data_cut['Time'] = data_cut['Time'].dt.total_seconds() / 60
 
+    # Collect less frequent makes into 'Other' category
+    make_counts = data_cut['make'].value_counts()
+    threshold = 500
+    other_makes = make_counts[make_counts < threshold].index
+
+    data_cut['make'] = data_cut['make'].replace(other_makes, 'Other')
+
     print("Data loading and wrangling complete")
     print(data_cut.shape)
 
     train_and_save_aov_model(data_cut)
 
-    scaler = load('prediction/supervised/models/scaler_for_aov_predictor.joblib')
-    model = load('prediction/supervised/models/aov_predictor.joblib')
-
-    aov_pred_input_df = data_cut[data_cut['Age_of_Vehicle'].isna()]
-    aov_pred_input_df = aov_pred_input_df[['make', 'Vehicle_Type', 'Age_Band_of_Driver', 'Sex_of_Driver']]
-    aov_pred_input_df = pd.get_dummies(aov_pred_input_df, columns=['make', 'Vehicle_Type', 'Age_Band_of_Driver', 'Sex_of_Driver'])
-
-    print(aov_pred_input_df.isna().sum())
-
-    predictions = model.predict(aov_pred_input_df)
-
-    # Fill NaN values with predictions converted from normalized to original values
-    data_cut.loc[data_cut['Age_of_Vehicle'].isna(), 'Age_of_Vehicle'] = scaler.inverse_transform(predictions)
-
-    print(data_cut.isna().sum())
+    # scaler = load('prediction/supervised/models/scaler_for_aov_predictor.joblib')
+    # model = load('prediction/supervised/models/aov_predictor.joblib')
+    #
+    # aov_pred_input_df = data_cut[data_cut['Age_of_Vehicle'].isna()]
+    # aov_pred_input_df = aov_pred_input_df[['make', 'Vehicle_Type', 'Age_Band_of_Driver', 'Sex_of_Driver']]
+    # aov_pred_input_df = pd.get_dummies(aov_pred_input_df, columns=['make', 'Vehicle_Type', 'Age_Band_of_Driver', 'Sex_of_Driver'])
+    #
+    # print(aov_pred_input_df.isna().sum())
+    #
+    # predictions = model.predict(aov_pred_input_df)
+    #
+    # # Fill NaN values with predictions converted from normalized to original values
+    # data_cut.loc[data_cut['Age_of_Vehicle'].isna(), 'Age_of_Vehicle'] = scaler.inverse_transform(predictions)
+    #
+    # print(data_cut.isna().sum())
 
 
 
@@ -80,8 +85,6 @@ def train_and_save_aov_model(data):
     scaler = MinMaxScaler()
     one_hot_aov_dropna.loc[:, 'Age_of_Vehicle'] = scaler.fit_transform(one_hot_aov_dropna[['Age_of_Vehicle']])
 
-    print(one_hot_aov_dropna.isna().sum())
-
     # Save the scaler for later use
     dump(scaler, 'prediction/supervised/models/scaler_for_aov_predictor.joblib')
 
@@ -93,22 +96,25 @@ def train_and_save_aov_model(data):
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     model = MLPRegressor(
-        hidden_layer_sizes=(15,),
+        hidden_layer_sizes=(50,),
         max_iter=1000,
         early_stopping=True,
         n_iter_no_change=20
     )
     print("Training Age of Vehicle predictor model...")
-    # model.fit(X_train, y_train)
+    start_time = time.time()
+    model.fit(X_train, y_train)
+    end_time = time.time()
 
     # Save the model for later use
     print("Saving Age of Vehicle predictor model...")
-    # dump(model, 'prediction/supervised/models/aov_predictor.joblib')
+    dump(model, 'prediction/supervised/models/aov_predictor.joblib')
 
-    # y_pred = model.predict(X_test)
-    #
-    # print(f"Mean Squared Error: {mean_squared_error(y_test, y_pred)}")
-    # print(f"R-squared: {r2_score(y_test, y_pred)}")
+    y_pred = model.predict(X_test)
+
+    print(f"Mean Squared Error: {mean_squared_error(y_test, y_pred)}")
+    print(f"R-squared: {r2_score(y_test, y_pred)}")
+    print(f"Time taken: {end_time - start_time}")
 
 
 def compare_continuous_models(X, y):
