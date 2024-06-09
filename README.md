@@ -1,4 +1,5 @@
 # TODO:
+
 - **Data Literacy**: 
   - Data Cleaning
   - Data Preprocessing
@@ -17,6 +18,8 @@
   * Accident prediction with: Neural Network versus ML algorithm
 * LLM
   * Chatbot
+    ![chatbot.gif](images/chatbot.gif)
+
 * Unity
   * Car simulator
     <br><br>

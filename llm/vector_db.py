@@ -3,8 +3,8 @@ from langchain_community.vectorstores import Chroma
 
 class VectorDB:
     def __init__(self):
-        self.persist_directory = 'data/chroma/'
-        self.embeddings = self.generate_embeddings()
+        self.persist_directory = './data/chroma/'
+        #self.embeddings = self.generate_embeddings()
     
     def generate_embeddings(self):
         model_name = "sentence-transformers/all-mpnet-base-v2"
@@ -17,15 +17,15 @@ class VectorDB:
         )
         return embeddings
     
-    def store_data(self, data):
+    def store_data(self, data, embeddings):
         vector_db = Chroma.from_documents(
             documents=data,
-            embeddings=self.embeddings,
-            persist_directory=self.path
+            embedding=embeddings,
+            persist_directory=self.persist_directory
         )
         vector_db.persist()
         return vector_db
     
     def load_data(self):
-        vector_db = Chroma(persist_directory=self.persist_directory, embedding_function=self.embeddings)
+        vector_db = Chroma(persist_directory=self.persist_directory, embedding_function=self.generate_embeddings())
         return vector_db
