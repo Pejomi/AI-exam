@@ -2,7 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, roc_auc_score
 from joblib import dump, load
 
 
@@ -26,6 +26,14 @@ def train(ml_ready):
     # Evaluate the model
     accuracy = accuracy_score(y_test, y_pred)
     print(f'Decision Tree Accuracy: {accuracy:.2f}')
+
+    probabilities = model.predict_proba(X_test)
+
+    auc_score_ovr = roc_auc_score(y_test, probabilities, multi_class='ovr')
+    print("AUC Score (One-vs-Rest):", auc_score_ovr)
+
+    auc_score_ovo = roc_auc_score(y_test, probabilities, multi_class='ovo')
+    print("AUC Score (One-vs-One):", auc_score_ovo)
 
     # Get feature importance
     feature_importances = pd.DataFrame(model.feature_importances_,
