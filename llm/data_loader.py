@@ -8,7 +8,6 @@ from langchain_community.document_loaders import Docx2txtLoader
 from langchain_community.document_loaders import DirectoryLoader
 from langchain_community.document_loaders import WikipediaLoader
 from langchain_community.document_loaders import YoutubeLoader
-import pytube
 
 # Load Entire Dir
 def loadDir(path, filetype='*') -> List:

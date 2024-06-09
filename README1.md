@@ -18,16 +18,27 @@ With the business scenario in mind, we want to investigate the following questio
 
 **Research questions:**
 - Can we predict the likelihood of a car accident given certain conditions?
-- What are the most important factors that contribute to a car accident?
 - Can we use AI to simulate car accidents and train autonomous cars?
 - How can we use AI to provide a chatbot that can answer questions about car accidents?
 
 **Hypothesis:**
-- We believe that we can predict the likelihood of a car accident with an accuracy of 70%.
-- We believe that the most important factors contributing to a car accident are the road conditions, the weather, the time of day and the driver involved.
+- **Weather Impact Hypothesis**: There is a statistically significant relationship between specific weather conditions (such as rain, snow, or fog) and the frequency and severity of car accidents. This could be explored through correlation analysis and regression models.
+
+- **Time Dependency Hypothesis**: The likelihood of accidents varies significantly with the time of day and week. For instance, late-night and early-morning hours might have higher accident rates due to reduced visibility or increased likelihood of drivers being impaired or fatigued.
+
+- **Driver Characteristics Hypothesis**: Certain driver demographics (age, driving experience) and behaviors (speeding, use of mobile phones) are strong predictors of accident likelihood. Machine learning classification models like logistic regression or decision trees can be used to analyze these factors.
+
+- **Road Conditions Hypothesis**: Poor road conditions (such as potholes, lack of proper signage) are crucial predictors of accidents. This hypothesis can be validated using spatial analysis techniques and machine learning models that incorporate GIS data.
+
+- **Predictive Model Effectiveness Hypothesis**: Machine learning models based on the available dataset can predict car accidents with a precision and recall above a certain threshold, making them practical for real-world applications. Model performance can be measured using metrics like accuracy, AUC-ROC, precision, recall, and F1-score.
+
+- **Chatbot Utility Hypothesis**: A chatbot trained on the accident dataset can accurately answer queries related to accident statistics, contributing factors, and preventive measures with a high satisfaction rate among users.
+
+- **Simulation Effectiveness Hypothesis**: Simulations based on real-world data can effectively train autonomous vehicles to identify and react to potential hazards, reducing the likelihood of accidents when compared to traditional training methods.
+
 
 ## The application
-Below is a diagram of the structure of the project.
+Below is a diagram of the current overall structure of the project.
 
 ![structure](images/structure.png)
 
@@ -111,9 +122,19 @@ After collecting and splitting our data, we need to vectorize it. With Chroma we
 
 To vectorize our data, we use the HuggingFace embeddings. HuggingFace is a library that provides pre-trained embeddings for natural language processing tasks.
 
-#### Use of Model
-We use the **Mistral (7B)** language model from Ollama to train our chatbot. 
+```python	
+    model_name = "sentence-transformers/all-mpnet-base-v2"
+        model_kwargs = {'device': 'cpu'}
+        encode_kwargs = {'normalize_embeddings': False}
+        embeddings = HuggingFaceEmbeddings(
+            model_name=model_name,
+            model_kwargs=model_kwargs,
+            encode_kwargs=encode_kwargs
+        )
+```
 
+#### Use of Model
+We use the **Mistral (7B)** language model from Ollama to train our chatbot.
 
 #### Examples
 Some examples of questions that the chatbot can answer are:
@@ -121,14 +142,13 @@ Some examples of questions that the chatbot can answer are:
 - How can I prevent a car accident?
 - What should I do if I am involved in a car accident?
 
-
 ![chat-answers.png](images/chat-answers.png)
 
 ## Data
 We have used the following data sets in this project:
 
 - **Traffic accident in UK data set**: The data set contains information about car accidents in the UK. [Link to the data set](https://www.kaggle.com/datasets/tsiaras/uk-road-safety-accidents-and-vehicles?select=Accident_Information.csv)
-- **Traffic sign images data set**: 
+- **Traffic sign images data set**: we use some pictures founded on google to train our model to recognize traffic signs.
 - **Wiki pages**: We have used the Wikipedia API to get information about traffic signs and road safety.
 - **PDFs**: We have used pdfs from the UK government and European Union to get information about road safety and traffic accidents. (See the folder ```llm/data/lib/pdf```)
 
@@ -137,7 +157,7 @@ The data is used in the following parts of the project:
 ![data](images/data.png)
 
 ## Conclusion
-In this project we have investigated the use of AI to predict the likelihood of a car accident given certain conditions. We have trained a machine learning model to predict the likelihood of a car accident based on the input features. The model achieved an accuracy of 70% on the test data set.
+In this project we have investigated the use of AI to predict the likelihood of a car accident given certain conditions. We have trained a machine learning model to predict the likelihood of a car accident based on the input features. 
 
 We have also used AI to simulate car accidents and train autonomous cars. We have created a simulation environment that can be used to train autonomous cars to avoid accidents.
 
@@ -146,6 +166,9 @@ Finally, we have used AI to provide a chatbot that can answer questions about ca
 ## Future work
 In the future, we would like to improve the accuracy of the machine learning model and the chatbot. We would also like to add more features to the simulation environment, such as the ability to simulate different types of accidents and road conditions.
 
+To use it in a real-world scenario, we wanted to integrate the different parts of the project into a single application to be used for a car. Below is a drawing of the future work of the project:
+
+![future](images/future.png)
 
 ## Run the project
 
