@@ -134,13 +134,19 @@ To vectorize our data, we use the HuggingFace embeddings. HuggingFace is a libra
 ```
 
 #### Use of Model
-We use the **Mistral (7B)** language model from Ollama to train our chatbot.
+We use the **Mistral (7B)** language model from Ollama to train our chatbot. There is some advantages of using Mistral for this project:
+- **Performance**: Mistral is specifically designed for complex tasks that require deep understanding and sophisticated processing of language, making it well-suited for applications in predictive analytics and natural language understanding​​.
+- **Multilingual Support**: Mistral Large supports multiple languages with high proficiency, including English, French, Spanish, German, and Italian. This feature is particularly advantageous for SafeWay if they plan to expand their services to international markets or need to process data from diverse linguistic sources​​.
+-**Advanced Features**: The model supports a 32K token context window, which is crucial for maintaining context in long interactions or documents. This would be beneficial for analyzing lengthy accident reports or complex queries in SafeWay's chatbot​​.
 
-#### Examples
-Some examples of questions that the chatbot can answer are:
+#### Demonstration of the chatbot
+We have here listed some examples of questions that the chatbot can answer:
+
 - What are the most common causes of car accidents?
 - How can I prevent a car accident?
 - What should I do if I am involved in a car accident?
+
+Below is a screenshot of the chatbot displayed on the Streamlit app:
 
 ![chat-answers.png](images/chat-answers.png)
 
