@@ -74,6 +74,37 @@ if len(y_pred[0]) > 2:  # Multi-class classification
 `AUC Score: 0.7065744268949956`
 
 We have done an evaluation of our model's performance by using the Area Under the Curve (AUC) score, which measures its ability to distinguish between different classes of accident severity. With an AUC score of 0.7066 it indicates that the model has a good level of discriminatory power, it successfully predicting the severity of accidents with a reasonable degree of accuracy. The score demonstrates that the model can differentiate between Slight, Serious, and Fatal accidents effectively, although there is still room for improvement.
+<br><br>
+#### Accident Severity Prediction Model Using a Decision Tree Classifier
+
+In addition to the ANN model, we have also developed a Decision Tree Classifier model to compare the two, and see which is best suited for a scenario like ours. The Decision Tree Classifier is a supervised machine learning algorithm that uses a tree-like graph of decisions and their possible consequences to predict the severity of accidents.
+
+The input features for the Decision Tree Classifier model are the same as for the ANN model. The model has been trained on the same dataset of UK traffic accident statistics.
+
+#### Performance evaluation (Area Under the Curve (AUC) score)
+
+The Decision Tree Classifier model has an AUC score of 0.530, which is lower than the ANN model's AUC score of 0.706. This indicates that the ANN model is better at predicting the severity of accidents than the Decision Tree Classifier model.
+Even though the Decision Tree Classifier model is easier to interpret and visualize, which can be useful for understanding the factors that contribute to the severity of accidents.
+
+We extracted the Feature Importances from the Decision Tree Classifier model to see which features are most important for predicting the severity of accidents. The importance of the features sorted in descending order is as follows:
+
+```
+Time       0.441
+Age        0.322
+Vehicle    0.085
+Road       0.051
+Weather    0.035
+Speed      0.032
+Light      0.021
+Urban      0.009
+Sex        0.004
+```
+
+The Feature Importances show that the most important features for predicting the severity of accidents are Time and Age, which accounts for around ```((0.441 + 0.322) * 100) ≈ 76%``` of the total importance.
+
+#### Performance evaluation (Accuracy)
+
+In Machine Learning, accuracy is a measure of how well a model can predict the correct outcome. It is calculated by dividing the number of correct predictions by the total number of predictions. The Decision Tree Classifier model has an accuracy of 0.77, which means that it can predict the severity of accidents with a 77% accuracy rate. This is a good result, but there is still room for improvement.
 
 ---
 
