@@ -44,8 +44,36 @@ Below is a diagram of the current overall structure of the project.
 
 The following sections describe the different parts of the project in more detail.
 
+---
+
 ### Accident prediction
-With use of Descision Tree Classifier we can predict the likelihood of a car accident given certain conditions. The model is trained on the data set and can be used to predict the likelihood of a car accident based on the input features.
+#### Accident Severity Prediction Model Using Artificial Neural Networks
+
+Our project presents an advanced machine learning model designed to predict the severity of road accidents. We are using an Artificial Neural Networks (ANN), our model analyzes various factors contributing to accident outcomes, such as weather conditions, speed limits, road type, and driver behavior.
+
+The model has been trained using official traffic accident statistics from the UK, spanning the years 2005 to 2016. By processing and learning from this extensive historical dataset, the ANN-based model predicts the severity of accidents at three distinct levels: Slight, Serious, and Fatal. These predictions can assist in proactive safety measures.
+
+![App example](images/accident_prediction_app.png)
+
+#### Model summary
+
+The accident severity prediction model employs a Sequential neural network architecture with three dense layers:
+
+![ANN model](images/ann_model_summary.png)
+
+#### Area Under the Curve (AUC) score
+```
+if len(y_pred[0]) > 2:  # Multi-class classification
+    from sklearn.metrics import roc_auc_score
+
+    # Calculate AUC score
+    auc_score = roc_auc_score(y_test, y_pred, multi_class='ovr')
+    print(f"AUC Score: {auc_score}")
+```
+
+`AUC Score: 0.7065744268949956`
+
+We have done an evaluation of our model's performance by using the Area Under the Curve (AUC) score, which measures its ability to distinguish between different classes of accident severity. With an AUC score of 0.7066 it indicates that the model has a good level of discriminatory power, it successfully predicting the severity of accidents with a reasonable degree of accuracy. The score demonstrates that the model can differentiate between Slight, Serious, and Fatal accidents effectively, although there is still room for improvement.
 
 ---
 

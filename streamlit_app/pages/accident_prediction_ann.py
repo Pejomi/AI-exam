@@ -3,9 +3,6 @@ import pandas as pd
 import joblib
 from keras.models import load_model
 import numpy as np
-from utils.utils import save_model_and_preprocessor, load_model_and_preprocessor
-
-
 
 # Define the options for each feature
 light_conditions_options = ["Daylight", "Darkness - lights lit", "Darkness - no lighting", "Darkness - lights unlit", "Darkness - lighting unknown"]
@@ -30,6 +27,14 @@ def predict_severity(input_scenario):
     severity = severity_mapping[predicted_severity]
     is_fatal = severity == 'Fatal'
     return severity, is_fatal
+
+
+def load_model_and_preprocessor():
+    # Load the trained model
+    model = load_model('../models/accident_severity_model.keras')
+    # Load the preprocessor
+    preprocessor = joblib.load('../models/preprocessor.joblib')
+    return model, preprocessor
 
 st.title("Accident Severity Prediction")
 
