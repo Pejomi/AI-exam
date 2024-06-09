@@ -19,7 +19,7 @@ With the business scenario in mind, we want to investigate the following questio
 **Research questions:**
 - Can we predict the likelihood of a car accident given certain conditions?
 - Can we use AI to simulate car accidents and train autonomous cars?
-- How can we use AI to provide a chatbot that can answer questions about car accidents?
+- Can we use AI to provide a chatbot that can answer questions about car accidents?
 
 **Hypothesis:**
 - **Weather Impact Hypothesis**: There is a statistically significant relationship between specific weather conditions (such as rain, snow, or fog) and the frequency and severity of car accidents. This could be explored through correlation analysis and regression models.
