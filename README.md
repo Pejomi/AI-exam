@@ -202,9 +202,9 @@ We also tested the model on real images, and it seems to perform well on those a
 
 Our end goal is to combine this model with the car simulator, so that the car can detect traffic signs in real-time, and react to them accordingly.
 
-<br>
-
 #### Info about the trained model
+
+![Link to repo for training model](https://github.com/Pejomi/trafficSynthData)
 
 The model used for this task is the YOLOv8n model trained on 30,000 synthetic images of traffic-environments
 with appearing traffic signs. The images were created and generated using the Unity Game Engine and its Perception Engine package.
