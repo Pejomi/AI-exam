@@ -202,6 +202,25 @@ We also tested the model on real images, and it seems to perform well on those a
 
 Our end goal is to combine this model with the car simulator, so that the car can detect traffic signs in real-time, and react to them accordingly.
 
+<br>
+
+#### Info about the trained model
+
+The model used for this task is the YOLOv8n model trained on 30,000 synthetic images of traffic-environments
+with appearing traffic signs. The images were created and generated using the Unity Game Engine and its Perception Engine package.
+The model was trained for 30 epochs with a batch size of 64, and was trained on the NVIDIA 1070 Ti GPU.
+
+A thing to note about the model's performance metrics, is that they are measured based on the synthetic images, and not real-world images.
+This means that the model might not perform as well on real-world images as it does on the synthetic images.
+
+Below are the training metrics of the model, showing the loss and mAP (mean Average Precision) over the 30 epochs:
+
+![results.png](img/results.png)
+
+And this is the produced confusion matrix, showing that the model has a high accuracy on the test set, with few misclassifications:
+
+![confusion_matrix_normalized.png](img/confusion_matrix_normalized.png)
+
 ---
 
 ### Chatbot
