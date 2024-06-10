@@ -4,14 +4,14 @@ Created by the group Pejomi (Peter, Jonas & Mie)
 This is a AI exam project for the course "Artificial Intelligence" at the Cphbusiness Lyngby campus. Below you will find a description of the project, the data used and the results of the project.
 
 ## Introduction
-Traffic accidents are a major cause of death and injury worldwide. In the UK alone, there are over 100,000 accidents every year ([UK government](https://www.gov.uk/government/statistics/reported-road-casualties-great-britain-annual-report-2020)). By using AI, we can predict the likelihood of a car accident given certain conditions. This can help us to understand the causes of accidents and take steps to prevent them.
+Traffic accidents are a major cause of death and injury worldwide. In the UK alone, there are over 100,000 accidents every year ([UK government](https://www.gov.uk/government/statistics/reported-road-casualties-great-britain-annual-report-2020)). By using AI, we can predict the severity of a potential car accident given certain conditions. This can help us to understand the causes of accidents and take steps to prevent them.
 
 ## Business scenario
 SafeWay is a company working with artificial intelligence and machine learning to provide tools for investigating and predicting car accidents.
 
 Their service is based on a large dataset of car accidents in the UK, which includes information about the weather, road conditions, time of day, the driver involved and other factors leading up to the accident.
 
-With the data they want to provide a services such as a chatbot that can answer questions about car accidents, a machine learning model that can predict the likelihood of a car accident given certain conditions, and a simulation environment for training autonomous cars.
+With the data they want to provide services such as a chatbot that can answer questions about car accidents, a machine learning model that can predict the severity of a potential car accident given certain conditions, and a simulation environment for training autonomous cars.
 
 ## Problem statement
 With the business scenario in mind, we want to investigate the following questions and hypothesis for this project:
@@ -84,23 +84,25 @@ The input features for the Decision Tree Classifier model are the same as for th
 #### Performance evaluation (Area Under the Curve (AUC) score)
 
 The Decision Tree Classifier model has an AUC score of 0.530, which is lower than the ANN model's AUC score of 0.706. This indicates that the ANN model is better at predicting the severity of accidents than the Decision Tree Classifier model.
-Even though the Decision Tree Classifier model is easier to interpret and visualize, which can be useful for understanding the factors that contribute to the severity of accidents.
+Though, the Decision Tree Classifier model is easier to interpret and visualize, which can be useful for understanding the factors that contribute to the severity of accidents.
 
 We extracted the Feature Importances from the Decision Tree Classifier model to see which features are most important for predicting the severity of accidents. The importance of the features sorted in descending order is as follows:
 
 ```
-Time       0.441
-Age        0.322
-Vehicle    0.085
-Road       0.051
-Weather    0.035
-Speed      0.032
-Light      0.021
-Urban      0.009
-Sex        0.004
+Time of day-----------------0.441
+Age of vehicle--------------0.217
+Age of driver---------------0.104
+Vehicle manoeuvre-----------0.085
+Weather conditions----------0.035
+Speed limit-----------------0.032
+Road surface Conditions-----0.031
+Light conditions------------0.021
+Road type-------------------0.020
+Area (urban orrural)--------0.009
+Sex of driver---------------0.004
 ```
 
-The Feature Importances show that the most important features for predicting the severity of accidents are Time and Age, which accounts for around ```((0.441 + 0.322) * 100) ≈ 76%``` of the total importance.
+The Feature Importances show that the most important features for predicting the severity of accidents are Time, Age of Vehicle, and Age of Driver, which account for ```((0.441 + 0.217 + 0.104) * 100) ≈ 75%``` of the total importance.
 
 #### Performance evaluation (Accuracy)
 
@@ -179,7 +181,7 @@ The chatbot is a simple question-answering system that can answer questions abou
 #### Vectorize our data
 After collecting and splitting our data, we need to vectorize it. With Chroma we store our data in a vectorized format. This allows us to easily access and manipulate the data in a structured way.
 
-To vectorize our data, we use the HuggingFace embeddings. HuggingFace is a library that provides pre-trained embeddings for natural language processing tasks.
+To vectorize our data, we use the HuggingFace embeddings. HuggingFace is a library that provides pre-trained embedding models for natural language processing tasks.
 
 ```python	
     model_name = "sentence-transformers/all-mpnet-base-v2"
@@ -196,10 +198,10 @@ To vectorize our data, we use the HuggingFace embeddings. HuggingFace is a libra
 We use the **Mistral (7B)** language model from Ollama to train our chatbot. There is some advantages of using Mistral for this project:
 - **Performance**: Mistral is specifically designed for complex tasks that require deep understanding and sophisticated processing of language, making it well-suited for applications in predictive analytics and natural language understanding​​.
 - **Multilingual Support**: Mistral Large supports multiple languages with high proficiency, including English, French, Spanish, German, and Italian. This feature is particularly advantageous for SafeWay if they plan to expand their services to international markets or need to process data from diverse linguistic sources​​.
--**Advanced Features**: The model supports a 32K token context window, which is crucial for maintaining context in long interactions or documents. This would be beneficial for analyzing lengthy accident reports or complex queries in SafeWay's chatbot​​.
+- **Advanced Features**: The model supports a 32K token context window, which is crucial for maintaining context in long interactions or documents. This would be beneficial for analyzing lengthy accident reports or complex queries in SafeWay's chatbot​​.
 
 #### Demonstration of the chatbot
-We have here listed some examples of questions that the chatbot can answer:
+The following are some examples of questions that the chatbot can answer:
 
 - What are the most common causes of car accidents?
 - How can I prevent a car accident?
@@ -213,7 +215,7 @@ Below is a screenshot of the chatbot displayed on the Streamlit app:
 We have used the following data sets in this project:
 
 - **Traffic accident in UK data set**: The data set contains information about car accidents in the UK. [Link to the data set](https://www.kaggle.com/datasets/tsiaras/uk-road-safety-accidents-and-vehicles?select=Accident_Information.csv)
-- **Traffic sign images data set**: we use some pictures founded on google to train our model to recognize traffic signs.
+- **Traffic sign images data set**: All images related to generating synthetic traffic sign data were scraped from google.
 - **Wiki pages**: We have used the Wikipedia API to get information about traffic signs and road safety.
 - **PDFs**: We have used pdfs from the UK government and European Union to get information about road safety and traffic accidents. (See the folder ```llm/data/lib/pdf```)
 
@@ -222,11 +224,11 @@ The data is used in the following parts of the project:
 ![data](images/data.png)
 
 ## Conclusion
-In this project we have investigated the use of AI to predict the likelihood of a car accident given certain conditions. We have trained a machine learning model to predict the likelihood of a car accident based on the input features. 
+In this project we have investigated the use of AI to predict the severity of a potential car accident at any given time, given certain conditions. We have trained, as well as compared, machine learning models in regards to this. 
 
-We have also used AI to simulate car accidents and train autonomous cars. We have created a simulation environment that can be used to train autonomous cars to avoid accidents.
+We have also used AI to simulate and train autonomous cars. We have created a simulation environment that can be used to train autonomous cars to avoid accidents, and react according to the environment.
 
-Finally, we have used AI to provide a chatbot that can answer questions about car accidents. The chatbot is a simple question-answering system that can answer questions about traffic, car accidents and road safety.
+Finally, we have used AI to develop a chatbot in terms of a simple question-answering system that can answer questions about traffic, car accidents and road safety.
 
 ## Future work
 In the future, we would like to improve the accuracy of the machine learning model and the chatbot. We would also like to add more features to the simulation environment, such as the ability to simulate different types of accidents and road conditions.
