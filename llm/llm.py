@@ -20,10 +20,10 @@ class LLM:
 
     def get_vector_db(self):
         db = VectorDB()
-        if db.load_data()._collection.count() == 0:
-            data = get_data()
-            chunk = chunkDocs(data, 350)
-            db.store_data(chunk, db.generate_embeddings())
+        # if db.load_data()._collection.count() == 0:
+        #     data = get_data()
+        #     chunk = chunkDocs(data, 350)
+        #     db.store_data(chunk, db.generate_embeddings())
         return db
 
     def generate_answer(self, question):
