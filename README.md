@@ -51,7 +51,7 @@ The following sections describe the different parts of the project in more detai
 #### Data Wrangling
 [wrangle_data.py](prediction%2Fsupervised%2Fwrangle_data.py)
 
-The data wrangling phase is crucial for preparing the dataset for the preprocessing step. We have performed the following steps to clean and preprocess the UK traffic accident dataset:
+The data wrangling phase is crucial for preparing the dataset for the preprocessing step. We have performed the following steps to clean and preprocess the data retrieved from the database storing the UK traffic accident dataset:
 
 * Select relevant features from the database: 
     - ['Accident_Severity', 'Time', 'Light_Conditions', 'Weather_Conditions', 'Speed_limit', 'Road_Type',
