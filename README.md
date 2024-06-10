@@ -83,7 +83,7 @@ The input features for the Decision Tree Classifier model are the same as for th
 
 #### Performance evaluation (Area Under the Curve (AUC) score)
 
-The Decision Tree Classifier model has an AUC score of 0.53, which is lower than the ANN model's AUC score of around 0.70. This indicates that the ANN model is better at predicting the severity of accidents than the Decision Tree Classifier model.
+The Decision Tree Classifier model has an AUC score of 0.53, which is lower than the ANN model's AUC score of around 0.70. This indicates that the ANN model is more effective at distinguishing each class from the others, compared to the Decision Tree Classifier.
 Though, the Decision Tree Classifier model is easier to interpret and visualize, which can be useful for understanding the factors that contribute to the severity of accidents.
 
 We extracted the Feature Importances from the Decision Tree Classifier model to see which features are most important for predicting the severity of accidents. The importance of the features sorted in descending order is as follows:
