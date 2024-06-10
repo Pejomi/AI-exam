@@ -9,6 +9,7 @@ import os
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
 from llm.llm import LLM
+from llm.utils import get_english_stop_words, remove_stop_words
 
 st.set_page_config(page_title="Chatbot", page_icon="../images/logo.png")
 a = LLM()
@@ -65,14 +66,23 @@ tab1, tab2 = st.tabs(["About", "Chat"])
 with tab1:
     df = pd.read_csv('data/documents.csv')
 
-    st.header("Our Large Language Model")
-    st.write("Our Large Language Model is created to help you with your questions. It is trained on a large dataset of documents and can answer a wide range of questions.")
-    st.subheader("Document Loading")
-
-    st.write("Below you can see the most common words from the documents saved and used for training the model.")
-    st.image('data/wordcloud.png', caption='common words')
-    st.dataframe(df.head(10))
+    st.header("About")
+    st.write("Our chatbot is built using the Mistral (7B) model. Below you can see the data used for the addition training of the model.") 
     
+    st.subheader("Common Words")
+    st.write("The most common words from the documents saved and used for training the model:")
+    st.image('data/wordcloud.png', caption='common words')
+   
+    st.subheader("All Documents")
+    words = remove_stop_words(df, 'page_content')
+    st.write("Total count of words: " + str(len(words)) + " (excluding stop words)")
+    st.dataframe(df)
+    
+    st.subheader("Stop Words")
+    st.write("Below are the stop words that are removed from the documents before training the model:")
+    stopw = get_english_stop_words()
+    st.expander("Words (" + str(len(stopw)) + ")").write(stopw)
+
 with tab2:
     # clear buttons
     col1, col2 = st.columns([9, 1])

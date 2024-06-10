@@ -46,7 +46,7 @@ def get_english_stop_words():
     stopw = nlp.Defaults.stop_words
     return stopw
 
-def wordCloud(df, col):
+def remove_stop_words(df, col):
     # replace newlines with spaces   
     longstring = [''.join(x) for x in df[col]]
     longstring = str(longstring).replace('\\n',' ')
@@ -56,6 +56,10 @@ def wordCloud(df, col):
     stopw = get_english_stop_words()
     # remove stopwords
     words = [word for word in longstring.split() if word.lower() not in stopw]
+    return words
+
+def wordCloud(df, col):
+    words = remove_stop_words(df, col)
     clean_text = " ".join(words)
     # wordcloud settings
     wordcloud = WordCloud(width=1600, height=800, background_color="white", max_words=1500, contour_width=3, contour_color='steelblue')
