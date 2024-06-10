@@ -42,7 +42,8 @@ def train(ml_ready):
 
     # Extract category base names from feature names
     feature_importances['category'] = feature_importances.index.to_series().apply(
-        lambda x: x.split('_')[0] if '_' in x else x)
+        lambda x: "_".join(x.split('_')[:-1]) if '_' in x else x
+    )
 
     # Group by the new category column and sum the importance
     category_importance = feature_importances.groupby('category')['importance'].sum().sort_values(ascending=False)
