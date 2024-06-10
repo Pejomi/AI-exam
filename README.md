@@ -204,7 +204,7 @@ Our end goal is to combine this model with the car simulator, so that the car ca
 
 #### Info about the trained model
 
-![Link to repo for training model](https://github.com/Pejomi/trafficSynthData)
+[Link to repo for training model](https://github.com/Pejomi/trafficSynthData)
 
 The model used for this task is the YOLOv8n model trained on 30,000 synthetic images of traffic-environments
 with appearing traffic signs. The images were created and generated using the Unity Game Engine and its Perception Engine package.
