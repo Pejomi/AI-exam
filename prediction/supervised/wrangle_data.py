@@ -47,7 +47,7 @@ def wrangle_data(data):
     # Fill NaN values in 'Age_of_Vehicle' with the median value
     data_cut.loc[:, 'Age_of_Vehicle'] = data_cut['Age_of_Vehicle'].fillna(data_cut['Age_of_Vehicle'].median())
 
-    # Fill NaN values in 'Age_of_Vehicle' with the mode value
+    # Fill NaN values in 'Age_Band_of_Driver' with the mode value
     data_cut.loc[:, 'Age_Band_of_Driver'] = data_cut['Age_Band_of_Driver'].fillna(data_cut.mode().iloc[0]['Age_Band_of_Driver'])
 
     data_cut.to_csv('data/clean_filled.csv', index=False, encoding='utf-8')

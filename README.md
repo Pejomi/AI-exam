@@ -47,6 +47,37 @@ The following sections describe the different parts of the project in more detai
 ---
 
 ### Accident prediction
+
+#### Data Wrangling
+[wrangle_data.py](prediction%2Fsupervised%2Fwrangle_data.py)
+
+The data wrangling phase is crucial for preparing the dataset for the preprocessing step. We have performed the following steps to clean and preprocess the UK traffic accident dataset:
+
+* Select relevant features from the database: 
+    - ['Accident_Severity', 'Time', 'Light_Conditions', 'Weather_Conditions', 'Speed_limit', 'Road_Type',
+         'Road_Surface_Conditions', 'Urban_or_Rural_Area', 'Age_Band_of_Driver', 'Sex_of_Driver', 'Age_of_Vehicle',
+         'Vehicle_Manoeuvre', 'make', 'Vehicle_Type']
+
+* Replace all values indicating lack of information with NaN
+* Drop NaN values for all rows except ['Age_of_Vehicle', 'Age_Band_of_Driver'] columns, as these contain a lot of NaN values, and we want to instead replace them with the median or mode value of the column
+* Convert time to minutes since midnight
+* Fill NaN values in 'Age_of_Vehicle' with the columns median value
+* Fill NaN values in 'Age_Band_of_Driver' with the columns mode value
+* Save to a CSV file called 'clean_filled.csv'
+
+#### Data Preprocessing
+[preprocess_data.py](prediction%2Fsupervised%2Fpreprocess_data.py)
+
+After wrangling, we preprocess the data to prepare it for the machine learning models. We perform the following steps:
+* Normalize the 'Time' column with a MinMaxScaler
+* Standardize the 'Age_of_Vehicle' column with a StandardScaler
+* One-hot encode the rest of the columns, as they are categorical
+* Encode the target variable 'Accident_Severity' with a OrdinalEncoder
+* Save the encoders and the scaler for later use
+* Save the ML-ready data to a CSV file called 'ml_ready.csv'
+
+<br>
+
 #### Accident Severity Prediction Model Using Artificial Neural Networks
 
 Our project presents an advanced machine learning model designed to predict the severity of road accidents. We are using an Artificial Neural Networks (ANN), our model analyzes various factors contributing to accident outcomes, such as weather conditions, speed limits, road type, and driver behavior.
