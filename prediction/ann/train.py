@@ -8,6 +8,10 @@ from keras.optimizers import Adam
 from sklearn.metrics import accuracy_score, roc_auc_score, classification_report, confusion_matrix
 from joblib import dump, load
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
 
 
 def train(ml_ready):
@@ -71,5 +75,11 @@ def train(ml_ready):
     print(classification_report(y_test_classes, y_pred_classes, zero_division=1))
 
     print("\nConfusion Matrix:")
-    print(confusion_matrix(y_test_classes, y_pred_classes))
+    cm = confusion_matrix(y_test_classes, y_pred_classes)
 
+    plt.figure(figsize=(8, 6))
+    sns.heatmap(cm, annot=True, cmap='Blues', fmt='d', cbar=False)
+    plt.xlabel('Predicted Labels')
+    plt.ylabel('True Labels')
+    plt.title('Confusion Matrix')
+    plt.show()
